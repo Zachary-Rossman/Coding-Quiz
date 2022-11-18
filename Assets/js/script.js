@@ -24,6 +24,8 @@ let questions = [
         answer: 'C'
     },
 ]
+
+let buttons = ["Shoes", "Purses", "Dresses", "Shirts"];
 //record score; start with zero
 let score = 0;
 
@@ -40,22 +42,22 @@ function startQuiz(){
     buttonOne.textContent = questions[0].choices[1];
     buttonOne.dataset.answer = questions[0].answer;
     qDiv.appendChild(buttonOne);
-
+    
     let buttonTwo = document.createElement("button");
     buttonTwo.textContent = questions[0].choices[1];
     buttonTwo.dataset.answer = questions[0].answer;
-    qDiv.appendChild(buttonOne);
-
+    qDiv.appendChild(buttonTwo);
+    
     let buttonThree = document.createElement("button");
     buttonThree.textContent = questions[0].choices[2];
     buttonThree.dataset.answer = questions[0].answer;
-    qDiv.appendChild(buttonOne);
-
+    qDiv.appendChild(buttonThree);
+    
     let buttonFour = document.createElement("button");
     buttonFour.textContent = questions[0].choices[3];
-    buttonOneFour.dataset.answer = questions[0].answer;
-    qDiv.appendChild(buttonOne);
-
+    buttonFour.dataset.answer = questions[0].answer;
+    qDiv.appendChild(buttonFour);
+    
     // make clickable
 }
 
@@ -64,6 +66,7 @@ function startQuiz(){
 startQuizbtn.addEventListener("click", startQuiz);
 
 qDiv.addEventListener("click", function (event) {
+    //console log to be deleted later
     console.log(event);
     let choice = event.target.innerHTML;
     let answer = event.target.dataset.answer;
