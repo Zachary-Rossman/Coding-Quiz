@@ -5,27 +5,26 @@ let qDiv = document.querySelector("#questions");
 let questions = [
     {
         question: '"Which file makes an app functional?',
-        choices: ('HTML+','CSS', 'HTML', 'Javascript'),
+        choices: ['HTML+','CSS', 'HTML', 'Javascript'],
         answer: 'Javasript'
     },
     {
         question: 'What is used to see what happens when a user clicks a button or types on an app?',
-        choices: ('jquery','a new API', 'console.log', 'a method'),
+        choices: ['jquery','a new API', 'console.log', 'a method'],
         answer: 'console.log'
     },
     {
         question: '"Why would a developer want to use javascript?',
-        choices: ('it makes you feel like a genius','it is complicated, avoid it at all cost', 'to make an app functional', 'it looks cool'),
+        choices: ['it makes you feel like a genius','it is complicated, avoid it at all cost', 'to make an app functional', 'it looks cool'],
         answer: 'to make an app functional'
     },
     {
         question: '"What is the house of a website?',
-        choices: ('HTML+','CSS', 'HTML', 'Javascript'),
+        choices: ['HTML+','CSS', 'HTML', 'Javascript'],
         answer: 'C'
     },
 ]
 
-let buttons = ["Shoes", "Purses", "Dresses", "Shirts"];
 //record score; start with zero
 let score = 0;
 
@@ -34,12 +33,12 @@ let score = 0;
 function startQuiz(){
     // Bring up a question
     let title = document.createElement('h2');
-    title.textContent = questions[0].title;
+    title.textContent = questions[0].question;
     qDiv.appendChild(title);
 
     // Add four answer options
     let buttonOne = document.createElement("button");
-    buttonOne.textContent = questions[0].choices[1];
+    buttonOne.textContent = questions[0].choices[0];
     buttonOne.dataset.answer = questions[0].answer;
     qDiv.appendChild(buttonOne);
     
@@ -59,7 +58,8 @@ function startQuiz(){
     qDiv.appendChild(buttonFour);
     
     // make clickable
-}
+    // For loop
+};
 
 // Function Calls
 
@@ -73,6 +73,8 @@ qDiv.addEventListener("click", function (event) {
 
     if(choice === answer) {
         alert("correct");
+        console.log(choice)
+        console.log(answer)
         //go to next question
         //questions ++
         score++
