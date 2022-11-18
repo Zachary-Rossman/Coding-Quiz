@@ -42,18 +42,18 @@ function startQuiz(){
     qDiv.appendChild(buttonOne);
 
     let buttonTwo = document.createElement("button");
-    buttonOne.textContent = questions[0].choices[1];
-    buttonOne.dataset.answer = questions[0].answer;
+    buttonTwo.textContent = questions[0].choices[1];
+    buttonTwo.dataset.answer = questions[0].answer;
     qDiv.appendChild(buttonOne);
 
     let buttonThree = document.createElement("button");
-    buttonOne.textContent = questions[0].choices[2];
-    buttonOne.dataset.answer = questions[0].answer;
+    buttonThree.textContent = questions[0].choices[2];
+    buttonThree.dataset.answer = questions[0].answer;
     qDiv.appendChild(buttonOne);
 
     let buttonFour = document.createElement("button");
-    buttonOne.textContent = questions[0].choices[3];
-    buttonOne.dataset.answer = questions[0].answer;
+    buttonFour.textContent = questions[0].choices[3];
+    buttonOneFour.dataset.answer = questions[0].answer;
     qDiv.appendChild(buttonOne);
 
     // make clickable
@@ -67,10 +67,12 @@ qDiv.addEventListener("click", function (event) {
     console.log(event);
     let choice = event.target.innerHTML;
     let answer = event.target.dataset.answer;
+
     if(choice === answer) {
+        alert("correct");
         //go to next question
         //questions ++
         score++
-        //choices and answers should cascade??
+        //repeat questions and answers
     }
 });
