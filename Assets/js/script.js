@@ -65,10 +65,12 @@ startQuizbtn.addEventListener("click", startQuiz);
 
 qDiv.addEventListener("click", function (event) {
     console.log(event);
-    if(choices === answer) {
+    let choice = event.target.innerHTML;
+    let answer = event.target.dataset.answer;
+    if(choice === answer) {
         //go to next question
         //questions ++
         score++
         //choices and answers should cascade??
     }
-})
+});
