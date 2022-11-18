@@ -1,31 +1,31 @@
 // Global Variables
 let startQuizbtn = document.querySelector("#startQuiz");
 let qDiv = document.querySelector("#questions");
+//array of objects for questions
 let questions = [
     {
-        prompt: "What is the house of a website?\n(A) HTML+\n(B) CSS\n(C)HTML\n(D) Javascript",
-        answer: "C"
+        question: '"Which file makes an app functional?',
+        choices: ('HTML+','CSS', 'HTML', 'Javascript'),
+        answer: 'Javasript'
     },
     {
-        prompt: "What is the file used to reset the styling of an app?\n(A) style.css\n(B) CSS\n(C) super_Duper.CSS\n(D) normalize.css",
-        answer: "D"
+        question: 'What is used to see what happens when a user clicks a button or types on an app?',
+        choices: ('jquery','a new API', 'console.log', 'a method'),
+        answer: 'console.log'
     },
     {
-        prompt: "Why would a developer actually want to use Javascript?\n(A) It makes you feel like a genius\n(B) Don't. It's complicated\n(C) To make the app they're developing functional\n(D) It looks cool",
-        answer: "C"
+        question: '"Why would a developer want to use javascript?',
+        choices: ('it makes you feel like a genius','it is complicated, avoid it at all cost', 'to make an app functional', 'it looks cool'),
+        answer: 'to make an app functional'
     },
     {
-        prompt: "Who is the President of the United States?\n(A) Johnny Depp\n(B) Deadpool\n(C) Joe Biden\n(D) Doofenshmirtz",
-        answer: "C"
+        question: '"What is the house of a website?',
+        choices: ('HTML+','CSS', 'HTML', 'Javascript'),
+        answer: 'C'
     },
 ]
+//record score; start with zero
 let score = 0;
-
-// For loop for questions
-
-for(let i=0; i< questions.length; i++){
-    let response = window.prompt(questions[i].prompt);
-}
 
 // Functions
 
@@ -34,26 +34,28 @@ function startQuiz(){
     let title = document.createElement('h2');
     title.textContent = questions[0].title;
     qDiv.appendChild(title);
+
     // Add four answer options
     let buttonOne = document.createElement("button");
-    buttonOne.textContent = questions[1].choices[1];
-    buttonOne.dataset.answer = questions[1].answer;
+    buttonOne.textContent = questions[0].choices[1];
+    buttonOne.dataset.answer = questions[0].answer;
     qDiv.appendChild(buttonOne);
 
     let buttonTwo = document.createElement("button");
-    buttonOne.textContent = questions[2].choices[2];
-    buttonOne.dataset.answer = questions[2].answer;
+    buttonOne.textContent = questions[0].choices[1];
+    buttonOne.dataset.answer = questions[0].answer;
     qDiv.appendChild(buttonOne);
 
     let buttonThree = document.createElement("button");
-    buttonOne.textContent = questions[2].choices[2];
-    buttonOne.dataset.answer = questions[2].answer;
+    buttonOne.textContent = questions[0].choices[2];
+    buttonOne.dataset.answer = questions[0].answer;
     qDiv.appendChild(buttonOne);
 
     let buttonFour = document.createElement("button");
-    buttonOne.textContent = questions[3].choices[3];
-    buttonOne.dataset.answer = questions[3].answer;
+    buttonOne.textContent = questions[0].choices[3];
+    buttonOne.dataset.answer = questions[0].answer;
     qDiv.appendChild(buttonOne);
+
     // make clickable
 }
 
@@ -61,10 +63,12 @@ function startQuiz(){
 
 startQuizbtn.addEventListener("click", startQuiz);
 
-questions.addEventListener("click", function () {
+qDiv.addEventListener("click", function (event) {
+    console.log(event);
     if(choices === answer) {
         //go to next question
         //questions ++
+        score++
         //choices and answers should cascade??
     }
 })
