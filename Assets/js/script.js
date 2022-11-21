@@ -2,9 +2,10 @@
 let startQuizbtn = document.querySelector("#startQuiz");
 let qDiv = document.querySelector("#questions");
 let resultsDiv = document.querySelector("#results");
-let nameDiv = document.querySelector("#enterInitials");
+let nameDiv = document.querySelector("#enterName");
 let submitDiv = document.querySelector("#submit");
-let playAgainDiv = document.querySelector("#playAgain");
+let playAgainbtn = document.querySelector("#playAgain");
+let timer = document.querySelector("timer");
 //array of objects for questions
 let questions = [
     {
@@ -30,8 +31,9 @@ let questions = [
 ]
 
 let questionsIndex = 0;
-let timer;
-let timerCount = 60;
+let secondsLeft = 60;
+
+// 
 
 //record score; start with zero
 let score = 0;
@@ -41,6 +43,20 @@ let score = 0;
 function startQuiz(){
     createbuttons(0);
 }
+
+// Timer function
+function setTime() {
+    let timerInterval = setInterval(function() {
+        secondsLeft--;
+        timer.textContent = secondsLeft + "Quiz Times out in:"
+
+        if(secondsLeft === 0) {
+            clearInterval(timerInterval);
+            sendMessage();
+        }
+    }, 1000)
+}
+
 function createbuttons(index){
 
     let title = document.createElement("h2");
@@ -74,31 +90,25 @@ function endQuiz(){
     clearInterval(timer);
     questionsIndex = 0;
 
-    let again = document.createElement("button");
-    again.textContent = "Play Again"
-    playAgainbtn.appendChild(again);
-
-    let enterBox = document.createElement("input");
-    enterBox.setAttribute("placeholder", "Enter your name here...");
-    nameBox.appendChild(enterBox);
+    let enterName = document.createElement("input");
+    enterName.setAttribute("placeholder", "Enter your name here...");
+    nameDiv.appendChild(enterName);
 
     let submitBtn = document.createElement("button");
     submitBtn.textContent = "Submit";
     submitDiv.appendChild(submitBtn);
 
-    let element = document.getElementById("#questions");
-    element.remove();
-}
+    let playAgain = document.createElement("button");
+    playAgain.textContent = playAgainBtn;
+    playAgainDiv.appendChild(playAgainBtn);
 
-//function submitName(){
-    //letElement.getElementById("#enterName");
-    //localStorage.getItem("username", element);
-    //localStorage.setItem("score", timerCount)
-//}
+//    let element = document.getElementById("#questions");
+//    element.remove();
+}
 
 // Function Calls
 
-startQuizbtn.addEventListener("click", startQuiz);
+startQuizbtn.addEventListener("click", startQuiz)
 
 // After user has clicked their choice
 qDiv.addEventListener("click", function(event) {
@@ -111,12 +121,12 @@ qDiv.addEventListener("click", function(event) {
     } else {
         resultsDiv.textContent = "Wrong!";
     }
-    if (timerCount <=0){
+    if (timerCount = 0){
         endQuiz();
     } else {
-        timerCount = timerCount - 1;
+        secondsLeft = secondsLeft - 1;
     }
-    if (questionsIndex < questions.length - 0){
+    if (questionsIndex < questions.length - 1){
         questionsIndex++;
         createbuttons(questionsIndex);
    } else{
@@ -124,3 +134,13 @@ qDiv.addEventListener("click", function(event) {
        endQuiz();
    }
 })
+
+// Function Call for enterName
+enterNameDiv.addEventListener('input', enterName);
+// Function call for submit
+submitDiv.addEventListener('click', submit);
+console.log(submitBtn);
+// Function call for playAgain
+playAgainDiv.addEventListener("click", playAgain);
+// Function call for Timer
+timerDiv.addEventListener("click", startQuiz);
