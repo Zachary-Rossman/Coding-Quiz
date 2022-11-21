@@ -1,10 +1,14 @@
 // Global Variables
 let startQuizbtn = document.querySelector("#startQuiz");
 let qDiv = document.querySelector("#questions");
+let resultsDiv = document.querySelector("#results");
+let nameDiv = document.querySelector("#enterInitials");
+let submitDiv = document.querySelector("#submit");
+let playAgainDiv = document.querySelector("#playAgain");
 //array of objects for questions
 let questions = [
     {
-        title: '"Which file makes an app functional?',
+        title: 'Which file makes an app functional?',
         choices: ['HTML+','CSS', 'HTML', 'Javascript'],
         answer: 'Javascript',
     },
@@ -14,18 +18,20 @@ let questions = [
         answer: 'console.log',
     },
     {
-        title: '"Why would a developer want to use javascript?',
+        title: 'Why would a developer want to use javascript?',
         choices: ['it makes you feel like a genius','it is complicated, avoid it at all cost', 'to make an app functional', 'it looks cool'],
         answer: 'to make an app functional',
     },
     {
-        title: '"What is the house of a website?',
-        choices: ['HTML+','CSS', 'HTML', 'Javascript'],
-        answer: 'HTML',
+        title: 'How would you name a file in order for it to be saved as a Javascript file?',
+        choices: ['.docx','.js', '.java', '.html'],
+        answer: '.js',
     },
 ]
 
-let questionsIndex = 1
+let questionsIndex = 0;
+let timer;
+let timerCount = 60;
 
 //record score; start with zero
 let score = 0;
@@ -62,6 +68,34 @@ function createbuttons(index){
     qDiv.appendChild(buttonFour);
 }
 
+function endQuiz(){
+    qDiv.innerHTML = "";
+    resultsDiv.textContent = "Quiz Over";
+    clearInterval(timer);
+    questionsIndex = 0;
+
+    let again = document.createElement("button");
+    again.textContent = "Play Again"
+    playAgainbtn.appendChild(again);
+
+    let enterBox = document.createElement("input");
+    enterBox.setAttribute("placeholder", "Enter your name here...");
+    nameBox.appendChild(enterBox);
+
+    let submitBtn = document.createElement("button");
+    submitBtn.textContent = "Submit";
+    submitDiv.appendChild(submitBtn);
+
+    let element = document.getElementById("#questions");
+    element.remove();
+}
+
+//function submitName(){
+    //letElement.getElementById("#enterName");
+    //localStorage.getItem("username", element);
+    //localStorage.setItem("score", timerCount)
+//}
+
 // Function Calls
 
 startQuizbtn.addEventListener("click", startQuiz);
@@ -72,20 +106,21 @@ qDiv.addEventListener("click", function(event) {
     let choice = event.target.innerHTML;
     let answer = event.target.dataset.answer;
 
-    if(choice === answer){
-        alert('correct');
-        // Go to next question
-        createbuttons(questionsIndex);
-        questionsIndex++;
-        // Score
-        score++;
-    } else if (choice !== answer){
-        alert('incorrect');
-        // Go to next question
-        createbuttons(questionsIndex);
-        // if questionsIndex
-        questionsIndex++;
-        // Score
-        score--;
+    if (choice === answer){
+        resultsDiv.textContent = "Correct!";
+    } else {
+        resultsDiv.textContent = "Wrong!";
     }
+    if (timerCount <=0){
+        endQuiz();
+    } else {
+        timerCount = timerCount - 1;
+    }
+    if (questionsIndex < questions.length - 0){
+        questionsIndex++;
+        createbuttons(questionsIndex);
+   } else{
+       qDiv.innerHTML = "";
+       endQuiz();
+   }
 })
