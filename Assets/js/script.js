@@ -6,7 +6,7 @@ let questions = [
     {
         question: '"Which file makes an app functional?',
         choices: ['HTML+','CSS', 'HTML', 'Javascript'],
-        answer: 'Javasript'
+        answer: 'Javasript',
     },
     {
         question: 'What is used to see what happens when a user clicks a button or types on an app?',
@@ -31,53 +31,56 @@ let score = 0;
 // Functions
 
 function startQuiz(){
-    // Bring up a question
-    let title = document.createElement('h2');
-    title.textContent = questions[0].question;
-    qDiv.appendChild(title);
+    createbuttons(0);
+}
+function createbuttons(index){
 
-    // Add four answer options
+    let title = document.createElement("h2");
+    title.textContent = questions[index].title;
+    qDiv.appendChild[title];
+
     let buttonOne = document.createElement("button");
-    buttonOne.textContent = questions[0].choices[0];
-    buttonOne.dataset.answer = questions[0].answer;
+    buttonOne.textContent = questions[index].choices[0];
+    buttonOne.dataset.anser = questions[index].answer;
     qDiv.appendChild(buttonOne);
-    
+
     let buttonTwo = document.createElement("button");
-    buttonTwo.textContent = questions[0].choices[1];
-    buttonTwo.dataset.answer = questions[0].answer;
+    buttonTwo.textContent = questions[index].choices[1];
+    buttonTwo.dataset.anser = questions[index].answer;
     qDiv.appendChild(buttonTwo);
-    
+
     let buttonThree = document.createElement("button");
-    buttonThree.textContent = questions[0].choices[2];
-    buttonThree.dataset.answer = questions[0].answer;
+    buttonThree.textContent = questions[index].choices[2];
+    buttonThree.dataset.anser = questions[index].answer;
     qDiv.appendChild(buttonThree);
-    
+
     let buttonFour = document.createElement("button");
-    buttonFour.textContent = questions[0].choices[3];
-    buttonFour.dataset.answer = questions[0].answer;
+    buttonFour.textContent = questions[index].choices[3];
+    buttonFour.dataset.anser = questions[index].answer;
     qDiv.appendChild(buttonFour);
-    
-    // make clickable
-    // For loop
-};
+}
 
 // Function Calls
 
 startQuizbtn.addEventListener("click", startQuiz);
 
-qDiv.addEventListener("click", function (event) {
-    //console log to be deleted later
+// After user has clicked their choice
+qDiv.addEventListener("click", function(event) {
     console.log(event);
     let choice = event.target.innerHTML;
     let answer = event.target.dataset.answer;
 
-    if(choice === answer) {
-        alert("correct");
-        console.log(choice)
-        console.log(answer)
-        //go to next question
-        //questions ++
-        score++
-        //repeat questions and answers
+    if(choice === answer){
+        alert('correct');
+        // Go to next question
+        createbuttons(1);
+        // Score
+        score++;
+    } else if (choice !== answer){
+        alert('incorrect');
+        // Go to next question
+        createbuttons(1);
+        // Score
+        score--;
     }
-});
+})
