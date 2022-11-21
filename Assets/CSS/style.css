@@ -1,0 +1,22 @@
+/* Elements */
+
+/* Classes */
+
+.header {
+    display: flex;
+    align-content: space-between;
+    background-color: bisque;
+}
+
+.high-scores-link {
+    display: flex;
+    align-content: flex-start;
+    text-decoration: black;
+}
+
+.questions {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+}
