@@ -4,22 +4,22 @@ let qDiv = document.querySelector("#questions");
 //array of objects for questions
 let questions = [
     {
-        question: '"Which file makes an app functional?',
+        title: '"Which file makes an app functional?',
         choices: ['HTML+','CSS', 'HTML', 'Javascript'],
-        answer: 'Javasript',
+        answer: 'Javascript',
     },
     {
-        question: 'What is used to see what happens when a user clicks a button or types on an app?',
+        title: 'What is used to see what happens when a user clicks a button or types on an app?',
         choices: ['jquery','a new API', 'console.log', 'a method'],
         answer: 'console.log',
     },
     {
-        question: '"Why would a developer want to use javascript?',
+        title: '"Why would a developer want to use javascript?',
         choices: ['it makes you feel like a genius','it is complicated, avoid it at all cost', 'to make an app functional', 'it looks cool'],
         answer: 'to make an app functional',
     },
     {
-        question: '"What is the house of a website?',
+        title: '"What is the house of a website?',
         choices: ['HTML+','CSS', 'HTML', 'Javascript'],
         answer: 'HTML',
     },
@@ -39,7 +39,7 @@ function createbuttons(index){
 
     let title = document.createElement("h2");
     title.textContent = questions[index].title;
-    qDiv.appendChild[title];
+    qDiv.append(title);
 
     let buttonOne = document.createElement("button");
     buttonOne.textContent = questions[index].choices[0];
@@ -48,17 +48,17 @@ function createbuttons(index){
 
     let buttonTwo = document.createElement("button");
     buttonTwo.textContent = questions[index].choices[1];
-    buttonTwo.dataset.anser = questions[index].answer;
+    buttonTwo.dataset.answer = questions[index].answer;
     qDiv.appendChild(buttonTwo);
 
     let buttonThree = document.createElement("button");
     buttonThree.textContent = questions[index].choices[2];
-    buttonThree.dataset.anser = questions[index].answer;
+    buttonThree.dataset.answer = questions[index].answer;
     qDiv.appendChild(buttonThree);
 
     let buttonFour = document.createElement("button");
     buttonFour.textContent = questions[index].choices[3];
-    buttonFour.dataset.anser = questions[index].answer;
+    buttonFour.dataset.answer = questions[index].answer;
     qDiv.appendChild(buttonFour);
 }
 
@@ -75,14 +75,15 @@ qDiv.addEventListener("click", function(event) {
     if(choice === answer){
         alert('correct');
         // Go to next question
-        createbuttons(1);
+        createbuttons(questionsIndex);
+        questionsIndex++;
         // Score
         score++;
     } else if (choice !== answer){
         alert('incorrect');
         // Go to next question
         createbuttons(questionsIndex);
-        // QuestionsIndex
+        // if questionsIndex
         questionsIndex++;
         // Score
         score--;
