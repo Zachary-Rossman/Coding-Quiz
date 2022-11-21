@@ -11,19 +11,21 @@ let questions = [
     {
         question: 'What is used to see what happens when a user clicks a button or types on an app?',
         choices: ['jquery','a new API', 'console.log', 'a method'],
-        answer: 'console.log'
+        answer: 'console.log',
     },
     {
         question: '"Why would a developer want to use javascript?',
         choices: ['it makes you feel like a genius','it is complicated, avoid it at all cost', 'to make an app functional', 'it looks cool'],
-        answer: 'to make an app functional'
+        answer: 'to make an app functional',
     },
     {
         question: '"What is the house of a website?',
         choices: ['HTML+','CSS', 'HTML', 'Javascript'],
-        answer: 'C'
+        answer: 'HTML',
     },
 ]
+
+let questionsIndex = 1
 
 //record score; start with zero
 let score = 0;
@@ -79,7 +81,9 @@ qDiv.addEventListener("click", function(event) {
     } else if (choice !== answer){
         alert('incorrect');
         // Go to next question
-        createbuttons(1);
+        createbuttons(questionsIndex);
+        // QuestionsIndex
+        questionsIndex++;
         // Score
         score--;
     }
