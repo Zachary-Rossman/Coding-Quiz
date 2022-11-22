@@ -1,12 +1,12 @@
 // Global Variables
 let startQuizbtn = document.querySelector("#startQuiz");
+let timer = document.querySelector("#timer");
 let qDiv = document.querySelector("#questions");
 let resultsDiv = document.querySelector("#results");
 let nameDiv = document.querySelector("#enterName");
 let submitDiv = document.querySelector("#submit");
 let playAgainbtn = document.querySelector("#playAgain");
-let timer = document.querySelector("timer");
-//array of objects for questions
+let questionsIndex = 0;
 let questions = [
     {
         title: 'Which file makes an app functional?',
@@ -30,13 +30,11 @@ let questions = [
     },
 ]
 
-let questionsIndex = 0;
-let secondsLeft = 60;
-
-// 
 
 //record score; start with zero
 let score = 0;
+let scores = JSON.parse(localStorage.getItem("scores")) || [];
+let secondsLeft = 60;
 
 // Functions
 
@@ -45,17 +43,12 @@ function startQuiz(){
 }
 
 // Timer function
-function setTime() {
-    let timerInterval = setInterval(function() {
-        secondsLeft--;
-        timer.textContent = secondsLeft + "Quiz Times out in:"
-
-        if(secondsLeft === 0) {
-            clearInterval(timerInterval);
-            sendMessage();
-        }
+function startTimer(){
+    timer = setInterval(function () {
+        timerCount--;
+        timerElement.textContent = timerCount;
     }, 1000)
-}
+};
 
 function createbuttons(index){
 
@@ -90,6 +83,11 @@ function endQuiz(){
     clearInterval(timer);
     questionsIndex = 0;
 
+    //show score here
+//    let results = document.createElement("h2");
+//    results.textContent = 'scores';
+//    resultsDiv.appendChild(score);
+
     let enterName = document.createElement("input");
     enterName.setAttribute("placeholder", "Enter your name here...");
     nameDiv.appendChild(enterName);
@@ -106,7 +104,7 @@ function endQuiz(){
 //    element.remove();
 }
 
-// Function Calls
+// Function Calls during quiz
 
 startQuizbtn.addEventListener("click", startQuiz)
 
@@ -135,11 +133,14 @@ qDiv.addEventListener("click", function(event) {
    }
 })
 
+// Function calls for after quiz
+
+// Function call for score
 // Function Call for enterName
-enterNameDiv.addEventListener('input', enterName);
+nameDiv.addEventListener('input', enterName);
 // Function call for submit
 submitDiv.addEventListener('click', submit);
-console.log(submitBtn);
+console.log(submit);
 // Function call for playAgain
 playAgainDiv.addEventListener("click", playAgain);
 // Function call for Timer
