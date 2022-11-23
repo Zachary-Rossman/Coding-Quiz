@@ -5,7 +5,7 @@ let qDiv = document.querySelector("#questions");
 let resultsDiv = document.querySelector("#results");
 let nameDiv = document.querySelector("#enterName");
 let submitDiv = document.querySelector("#submit");
-let playAgainbtn = document.querySelector("#playAgain");
+let playAgain = document.querySelector("#playAgain");
 let questionsIndex = 0;
 let questions = [
     {
@@ -82,23 +82,18 @@ function endQuiz(){
     resultsDiv.textContent = "Quiz Over";
     clearInterval(timer);
     questionsIndex = 0;
+    console.log(endQuiz);
+    alert('Quiz Over');
 
-    //show score here
-//    let results = document.createElement("h2");
-//    results.textContent = 'scores';
-//    resultsDiv.appendChild(score);
-
+    // Text box to enter name
     let enterName = document.createElement("input");
     enterName.setAttribute("placeholder", "Enter your name here...");
     nameDiv.appendChild(enterName);
 
+    // Submit button for name
     let submitBtn = document.createElement("button");
     submitBtn.textContent = "Submit";
     submitDiv.appendChild(submitBtn);
-
-    let playAgain = document.createElement("button");
-    playAgain.textContent = playAgainBtn;
-    playAgainDiv.appendChild(playAgainBtn);
 
 //    let element = document.getElementById("#questions");
 //    element.remove();
@@ -106,7 +101,7 @@ function endQuiz(){
 
 // Function Calls during quiz
 
-startQuizbtn.addEventListener("click", startQuiz)
+startQuizbtn.addEventListener("click", startQuiz);
 
 // After user has clicked their choice
 qDiv.addEventListener("click", function(event) {
@@ -140,8 +135,5 @@ qDiv.addEventListener("click", function(event) {
 nameDiv.addEventListener('input', enterName);
 // Function call for submit
 submitDiv.addEventListener('click', submit);
-console.log(submit);
 // Function call for playAgain
-playAgainDiv.addEventListener("click", playAgain);
 // Function call for Timer
-timerDiv.addEventListener("click", startQuiz);
